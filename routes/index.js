@@ -4,17 +4,15 @@ const Cocktail = require('../services/cocktail')
 const cocktail = new Cocktail()
 
 // Get all cocktails: http://localhost:3000/cocktails
-router.get('/cocktails', function (req, res) {
-  cocktail.getAllCocktails().then(function (value) {
-    res.json(value)
-  })
+router.get('/cocktails', async function (req, res) {
+  let response = await cocktail.getAllCocktails()
+  res.json(response)
 })
 
 // Get single cocktail: http://localhost:3000/cocktails/Mojito
-router.get('/cocktails/:name', function (req, res) {
-  cocktail.getCocktailByName(req.params.name).then(function (value) {
-    res.json(value)
-  })
+router.get('/cocktails/:name', async function (req, res) {
+  let response = await cocktail.getCocktailByName(req.params.name)
+  res.json(response)
 })
 
 module.exports = router
