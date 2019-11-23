@@ -1,7 +1,9 @@
-# Awesome Project Build with TypeORM
+# Cocktail API
 
 Steps to run this project:
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+1. git clone the project
+2. Run `npm install` command
+3. Setup the database configuration in a ormconfig.json file, see ormconfig.example.json
+4. Create a JWT Secret in config/config/ts, see config.example.ts
+4. Run `npm start` command
