@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  cocktail:
+    image: cocktail
+    ports:
+    - "3005:3000"
+    env_file: .env
+  

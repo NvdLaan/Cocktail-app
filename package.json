@@ -17,7 +17,6 @@
    "scripts": {
       "build": "tsc",
       "docker-build": "docker build . -t cocktail",
-      "docker-run": "docker run --restart always -d -p 3000:3000 cocktail",
       "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts"
    },
    "dependencies": {
