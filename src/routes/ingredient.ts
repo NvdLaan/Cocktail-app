@@ -6,7 +6,7 @@ import IngredientController from "../controllers/ingredientController";
 const router = Router();
 
 
-router.get("/", [checkJwt, checkRole(["ADMIN"])], IngredientController.listAll);
+router.get("/", IngredientController.listAll);
 // router.post("/", [checkJwt, checkRole(["ADMIN"])], CocktailController.newCocktail);
 
 export default router;

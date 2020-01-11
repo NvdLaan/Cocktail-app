@@ -1,19 +1,28 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getRepository, getMongoRepository } from 'typeorm';
 import { validate } from "class-validator";
 
 import { Cocktail } from "../entity/Cocktail";
+import { Ingredient } from '../entity/Ingredient';
 let cocktails;
 class CocktailController{
 
 static listAll = async (req: Request, res: Response) => {
-  //Get users from database
   const cocktailRepository = getRepository(Cocktail);
   if (!cocktails) {
     cocktails = await cocktailRepository.find();
   }
-  //Send the users object
   res.send(cocktails);
+};
+
+static listCocktailsByIngredients = async (req: Request, res: Response) => {
+  //example post data ["Lemon", "Gin"]
+  const userIngredients = req.body;
+  console.log("User input: " + userIngredients);
+  const cocktailRepository = getMongoRepository(Cocktail);
+  // @ts-ignore
+  const personalCocktails = await cocktailRepository.find({ ingredients : { $in : userIngredients }});
+  res.send(personalCocktails);
 };
 
 static newCocktail = async (req: Request, res: Response) => {
