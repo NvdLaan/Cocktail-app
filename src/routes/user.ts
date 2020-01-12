@@ -19,6 +19,9 @@
   //Create a new user
   router.post("/", [checkJwt, checkRole(["ADMIN"])], UserController.newUser);
 
+  //Save ingredients
+  router.post("/ingredient", [checkJwt, checkRole(["ADMIN"])], UserController.saveIngredients);
+ 
   //Edit one user
   router.patch(
     "/:id([0-9]+)",
