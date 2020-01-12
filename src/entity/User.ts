@@ -35,6 +35,10 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @Column()
+  @UpdateDateColumn()
+  ingredients: Array<string>;
+
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);
   }

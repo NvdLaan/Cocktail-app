@@ -3,7 +3,6 @@ import { getRepository, getMongoRepository } from 'typeorm';
 import { validate } from "class-validator";
 
 import { Cocktail } from "../entity/Cocktail";
-import { Ingredient } from '../entity/Ingredient';
 let cocktails;
 class CocktailController{
 
@@ -15,13 +14,23 @@ static listAll = async (req: Request, res: Response) => {
   res.send(cocktails);
 };
 
-static listCocktailsByIngredients = async (req: Request, res: Response) => {
+static listCocktailsIncludingIngredients = async (req: Request, res: Response) => {
   //example post data ["Lemon", "Gin"]
   const userIngredients = req.body;
   console.log("User input: " + userIngredients);
   const cocktailRepository = getMongoRepository(Cocktail);
   // @ts-ignore
   const personalCocktails = await cocktailRepository.find({ ingredients : { $in : userIngredients }});
+  res.send(personalCocktails);
+};
+
+static listCocktailsIncludingAllIngredients = async (req: Request, res: Response) => {
+  //example post data ["Lemon", "Gin"]
+  const userIngredients = req.body;
+  console.log("User input: " + userIngredients);
+  const cocktailRepository = getMongoRepository(Cocktail);
+  // @ts-ignore
+  const personalCocktails = await cocktailRepository.find({ ingredients : { $all : userIngredients }});
   res.send(personalCocktails);
 };
 

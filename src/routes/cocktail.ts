@@ -7,7 +7,7 @@ const router = Router();
 
 
 router.get("/", CocktailController.listAll);
-router.post("/test", CocktailController.listCocktailsByIngredients);
+router.post("/personal", CocktailController.listCocktailsIncludingIngredients);
 router.post("/", CocktailController.newCocktail);
 
 export default router;
